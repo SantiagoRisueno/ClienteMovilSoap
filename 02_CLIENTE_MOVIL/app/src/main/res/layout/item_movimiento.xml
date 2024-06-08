@@ -2,48 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="8dp">
 
     <TextView
-        android:id="@+id/codigoTextView"
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewCuenta"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Código" />
+        android:layout_weight="1"
+        android:text="Cuenta" />
 
     <TextView
-        android:id="@+id/movimientoTextView"
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewImporte"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Movimiento" />
-
-    <TextView
-        android:id="@+id/fechaTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fecha" />
-
-    <TextView
-        android:id="@+id/empleadoTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Empleado" />
-
-    <TextView
-        android:id="@+id/tipoTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tipo" />
-
-    <TextView
-        android:id="@+id/importeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="Importe" />
 
-    <TextView
-        android:id="@+id/referenciaTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Referencia" />
 </LinearLayout>

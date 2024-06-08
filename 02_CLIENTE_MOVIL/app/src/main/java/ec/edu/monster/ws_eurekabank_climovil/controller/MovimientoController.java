@@ -2,7 +2,14 @@ package ec.edu.monster.ws_eurekabank_climovil.controller;
 
 import android.util.Log;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import ec.edu.monster.ws_eurekabank_climovil.model.Movimiento;
 import ec.edu.monster.ws_eurekabank_climovil.service.SoapClient;
@@ -51,9 +58,25 @@ public class MovimientoController {
     }
 
     private List<Movimiento> parseSoapResponse(String responseBody) {
-        // Aquí deberás parsear la respuesta y convertirla en objetos Movimiento
-        // Puedes usar XML parsing libraries como JAXB o SimpleXML
-        return null;
+        List<Movimiento> movimientos = new ArrayList<>();
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(new java.io.ByteArrayInputStream(responseBody.getBytes()));
+
+            NodeList cuentaNodes = doc.getElementsByTagName("chr_cuencodigo");
+            NodeList importeNodes = doc.getElementsByTagName("dec_moviimporte");
+
+            for (int i = 0; i < cuentaNodes.getLength(); i++) {
+                Movimiento movimiento = new Movimiento();
+                movimiento.setCuenta(cuentaNodes.item(i).getTextContent());
+                movimiento.setImporte(Double.parseDouble(importeNodes.item(i).getTextContent()));
+                movimientos.add(movimiento);
+            }
+        } catch (Exception e) {
+            Log.e("SOAP", "Error parsing SOAP response: " + e.getMessage());
+        }
+        return movimientos;
     }
 
     public interface OnMovimientosReceivedListener {

@@ -21,8 +21,8 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Mo
     @NonNull
     @Override
     public MovimientoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movimiento, parent, false);
-        return new MovimientoViewHolder(itemView);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movimiento, parent, false);
+        return new MovimientoViewHolder(view);
     }
 
     @Override
@@ -43,33 +43,18 @@ public class MovimientoAdapter extends RecyclerView.Adapter<MovimientoAdapter.Mo
 
     class MovimientoViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView codigoTextView;
-        private TextView movimientoTextView;
-        private TextView fechaTextView;
-        private TextView empleadoTextView;
-        private TextView tipoTextView;
+        private TextView cuentaTextView;
         private TextView importeTextView;
-        private TextView referenciaTextView;
 
         public MovimientoViewHolder(@NonNull View itemView) {
             super(itemView);
-            codigoTextView = itemView.findViewById(R.id.codigoTextView);
-            movimientoTextView = itemView.findViewById(R.id.movimientoTextView);
-            fechaTextView = itemView.findViewById(R.id.fechaTextView);
-            empleadoTextView = itemView.findViewById(R.id.empleadoTextView);
-            tipoTextView = itemView.findViewById(R.id.tipoTextView);
-            importeTextView = itemView.findViewById(R.id.importeTextView);
-            referenciaTextView = itemView.findViewById(R.id.referenciaTextView);
+            cuentaTextView = itemView.findViewById(R.id.textViewCuenta);
+            importeTextView = itemView.findViewById(R.id.textViewImporte);
         }
 
         public void bind(Movimiento movimiento) {
-            codigoTextView.setText(movimiento.getCodigo());
-            movimientoTextView.setText(String.valueOf(movimiento.getMovimiento()));
-            fechaTextView.setText(movimiento.getFecha());
-            empleadoTextView.setText(movimiento.getEmpleado());
-            tipoTextView.setText(movimiento.getTipo());
+            cuentaTextView.setText(movimiento.getCuenta());
             importeTextView.setText(String.valueOf(movimiento.getImporte()));
-            referenciaTextView.setText(movimiento.getReferencia());
         }
     }
 }
